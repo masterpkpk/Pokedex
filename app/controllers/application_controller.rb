@@ -10,7 +10,36 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :welcome
+    erb :welcome 
   end
+
+  post "/signup" do 
+    @trainer = Trainer.create(username: params[:username], password_digest: params[:password])
+    session[:user_id] = @trainer.id
+    redirect "/home"
+  end 
+
+  get '/home' do
+    @trainer = Trainer.find_by_id(session[:user_id])
+    if logged_in?
+      erb :home
+    else
+      redirect "/"
+    end
+  end
+
+  helpers do
+    def current_user
+      @current_user ||= Trainer.find_by_id(session[:user_id])
+    end
+
+    def logged_in?
+      current_user != nil
+    end
+  end
+
+
+
+
 
 end
