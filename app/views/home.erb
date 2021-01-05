@@ -1,4 +1,11 @@
 <h1> Welcome home <%= @trainer.username %></h1>
+<h2>Please choose a starter pokemon</h2>
+<%bulbasaur = Pokemon.find_by(id: "1")%>
+<%charmander = Pokemon.find_by(id: "4")%>
+<%squirtle = Pokemon.find_by(id: "7")%>
+<img src="<%= bulbasaur[:sprite] %>" alt="" >
+<img src="<%= charmander[:sprite] %>" alt="" >
+<img src="<%= squirtle[:sprite] %>" alt="" > <br>
 <img src="https://static.giantbomb.com/uploads/scale_super/0/1481/2897229-9939923796-latest" alt="image" height="150" width = "500"
 class="center">
 <img class="center" src="http://gran4u.xtgem.com/Pokedex.png" alt="image" > 
