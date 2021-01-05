@@ -5,6 +5,7 @@ class CreatePokemons < ActiveRecord::Migration
       t.string :type
       t.string :region
       t.string :height
+      t.string :sprite
       t.timestamps null: false
     end
   end

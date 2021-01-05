@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20210104183909) do
     t.string   "type"
     t.string   "region"
     t.string   "height"
+    t.string   "sprite"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
