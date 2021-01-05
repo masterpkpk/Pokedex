@@ -10,8 +10,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    Api.new.pokemon_creator
-    erb :welcome 
+    if Pokemon.all.size == 0
+      Api.new.pokemon_creator 
+    else
+      erb :welcome 
+    end
   end
 
   get '/signup' do
