@@ -6,6 +6,8 @@ class CreatePokemons < ActiveRecord::Migration
       t.string :region
       t.string :height
       t.string :sprite
+      t.integer :trainer_id
+      t.integer :pokedex_id
       t.timestamps null: false
     end
   end

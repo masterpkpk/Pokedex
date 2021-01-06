@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20210104183909) do
 
   create_table "pokedexes", force: :cascade do |t|
     t.string   "name"
+    t.integer  "trainer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -25,6 +26,8 @@ ActiveRecord::Schema.define(version: 20210104183909) do
     t.string   "region"
     t.string   "height"
     t.string   "sprite"
+    t.integer  "trainer_id"
+    t.integer  "pokedex_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

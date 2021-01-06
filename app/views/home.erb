@@ -1,18 +1,4 @@
 <h1> Welcome home <%= @trainer.username %></h1>
 
-<h2>Pokemon in Pokedex</h2>
-<h3>  
-  <ul>
-    <% Pokemon.all.each.with_index(1) do |pokemon, index|%>
-      <%=  "#{index}. #{pokemon["name"].capitalize}" %>
-      <img src="<%= pokemon[:sprite] %>" alt="" > <br>
-    <%end%>
-  </ul>
-</h3>
-<form action="/logout" method="POST">
-  <input type="submit" value="logout">
-</form> <br>
-<form action="/delete/<%= @trainer.id %>" method="POST">
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="delete user">
-</form>
+
+

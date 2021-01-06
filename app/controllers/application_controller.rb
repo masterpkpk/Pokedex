@@ -59,6 +59,18 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get "/index" do
+    
+    @trainer = current_user
+    
+    if logged_in?
+      erb :index
+      
+    else
+      redirect "/"
+    end
+  end
+
   post "/delete/:user_id" do
     Trainer.destroy(params[:user_id])
     redirect '/'
