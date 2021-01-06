@@ -16,4 +16,7 @@ require 'open-uri'
 require 'json'
 require_relative "../app/models/Api.rb"
 require './app/controllers/application_controller'
+require './app/controllers/pokedex_controller'
+require './app/controllers/pokemon_controller'
+require './app/controllers/trainer_controller'
 require_all 'app'
