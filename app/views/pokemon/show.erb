@@ -1,1 +1,11 @@
-<h1> <img src="<%=@pokemon.sprite%>" alt=""></h1>
+<%PokemonTrainer.all.each do |pokemon_trainer|%>
+  <%if pokemon_trainer.trainer_id == current_user.id%>
+    <%pokemon = Pokemon.find_by_id(pokemon_trainer.pokemon_id) %>
+    <h2><%=  pokemon["name"].capitalize %></h2>
+    <img src="<%= pokemon[:sprite] %>" alt="" align="center" > <br>
+    <%="Height: #{pokemon.height}"%> <br>
+    <%="Type: #{pokemon.pokemon_type.capitalize}"%>
+    
+  <%else%>
+  <%end%>
+<%end%>

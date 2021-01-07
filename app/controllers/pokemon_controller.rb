@@ -14,11 +14,20 @@ class PokemonController < ApplicationController
     end
   end
 
+  get '/pokemon' do
+    @trainer = current_user
+    erb :'pokemon/show'
+  end
+
   post '/pokemon/new' do
     @pokemon = Pokemon.find_by_id(params['pokemon'])
     @trainer = current_user
     @pokemon_trainer = PokemonTrainer.create(pokemon_id: @pokemon.id, trainer_id: @trainer.id)
-    binding.pry
-    erb :'pokemon/show'
+    @pokemon.trainer_id = @pokemon_trainer.trainer_id
+    redirect '/index'
   end
+
+ 
+
+  
 end
