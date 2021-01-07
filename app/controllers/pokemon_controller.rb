@@ -2,11 +2,7 @@ require "./config/environment"
 
 class PokemonController < ApplicationController
   get "/" do
-    if Pokemon.all.size == 0
-      Api.new.pokemon_creator 
-    else
-      erb :welcome 
-    end
+   erb :welcome 
   end
 
   get "/index" do
@@ -16,5 +12,11 @@ class PokemonController < ApplicationController
     else
       redirect "/"
     end
+  end
+
+  post '/pokemon/new' do
+    binding.pry
+    
+    erb :'pokemon/show'
   end
 end
