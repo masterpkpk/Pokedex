@@ -9,7 +9,7 @@ class TrainerController < ApplicationController
   post "/signup" do 
     @trainer = Trainer.create(username: params[:username], password: params[:password])
     session[:user_id] = @trainer.id
-    redirect "/home"
+    redirect "/index"
   end
 
   get '/login' do
@@ -20,7 +20,7 @@ class TrainerController < ApplicationController
     user = Trainer.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/home"
+      redirect "/index"
     else
       redirect "/"
     end
