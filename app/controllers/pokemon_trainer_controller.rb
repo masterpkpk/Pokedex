@@ -9,8 +9,9 @@ class PokemonTrainerController < ApplicationController
     @pokemon_trainer = PokemonTrainer.find_by(trainer_id: current_user.id, pokemon_id: params["pokemon"])
     
     @pokemon_trainer.nickname = params["name"]
-    binding.pry
-    redirect 'index'
+    @pokemon_trainer.save
+    
+    redirect '/pokemon'
   end
 
 end
