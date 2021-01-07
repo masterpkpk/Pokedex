@@ -11,10 +11,11 @@ class="center"><br>
 
   <ul>
     <% Pokemon.all.each.with_index(1) do |pokemon, index|%>
-      <%if PokemonTrainer.find_by(trainer_id: current_user.id, pokemon_id: pokemon.id)%>
+      <%if @pokemon_trainer = PokemonTrainer.find_by(trainer_id: current_user.id, pokemon_id: pokemon.id)%>
         
         
-          <form action="/pokemon/new" method="POST">
+          <form action="/pokemon_trainer/<%= @pokemon_trainer.id%>" method="POST">
+          
             <%=  "#{index}. #{pokemon["name"].capitalize}" %>
             <img src="<%= pokemon[:sprite] %>" alt="" align="center" >
             <input type="hidden" value="<%=pokemon.id%>" name="pokemon">

@@ -27,6 +27,8 @@ class PokemonController < ApplicationController
     redirect '/index'
   end
 
+  
+
  
 
   
