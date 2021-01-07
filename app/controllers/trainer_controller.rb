@@ -25,6 +25,11 @@ class TrainerController < ApplicationController
       redirect "/"
     end
   end
+  get "/logout" do
+    session.clear
+    redirect "/"
+  end
+
 
   post "/logout" do
     session.clear

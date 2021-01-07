@@ -1,8 +1,8 @@
 
 <div align="center">
 <h1> Welcome home <%= @trainer.username %></h1>
-<img src="https://static.giantbomb.com/uploads/scale_super/0/1481/2897229-9939923796-latest" alt="image" height="150" width = "400"
-class="center"><br>
+
+
 <div>
 
 
@@ -19,14 +19,14 @@ class="center"><br>
             <%=  "#{index}. #{pokemon["name"].capitalize}" %>
             <img src="<%= pokemon[:sprite] %>" alt="" align="center" >
             <input type="hidden" value="<%=pokemon.id%>" name="pokemon">
-            <input type="submit" value="Release me" style="background-color:red">
+            <input type="submit" value="Release Pokemon" style="background-color:red">
           </form> 
         <%else%>
           <form action="/pokemon/new" method="POST">
             <%=  "#{index}. #{pokemon["name"].capitalize}" %>
             <img src="<%= pokemon[:sprite] %>" alt="" align="center" >
             <input type="hidden" value="<%=pokemon.id%>" name="pokemon">
-            <input type="submit" value="Capture me">
+            <input type="submit" value="Capture Pokemon">
           </form>
         <%end%>
     <%end%>
