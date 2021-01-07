@@ -15,8 +15,10 @@ class PokemonController < ApplicationController
   end
 
   post '/pokemon/new' do
+    @pokemon = Pokemon.find_by_id(params['pokemon'])
+    @trainer = current_user
+    @pokemon_trainer = PokemonTrainer.create(pokemon_id: @pokemon.id, trainer_id: @trainer.id)
     binding.pry
-    
     erb :'pokemon/show'
   end
 end
