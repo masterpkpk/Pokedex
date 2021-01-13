@@ -1,0 +1,43 @@
+
+<div align="center">
+<h1> Welcome home <%= @trainer.username %></h1>
+
+
+<div>
+
+
+<h2>Pokemon in Pokedex</h2>
+<h3>
+
+  <ul>
+    <% Pokemon.all.each.with_index(1) do |pokemon, index|%>
+      <%if @pokemon_trainer = PokemonTrainer.find_by(trainer_id: current_user.id, pokemon_id: pokemon.id)%>
+        
+        
+          <form action="/pokemon_trainer/<%= @pokemon_trainer.id%>" method="POST">
+            <input type="hidden" name="_method" value="delete">
+            <%=  "#{index}. #{pokemon["name"].capitalize}" %>
+            <img src="<%= pokemon[:sprite] %>" alt="" align="center" >
+            <input type="hidden" value="<%=pokemon.id%>" name="pokemon">
+  
+            <input type="submit" value="Release Pokemon" style="background-color:red">
+          </form> 
+        <%else%>
+          <form action="/pokemon/new" method="POST">
+            <%=  "#{index}. #{pokemon["name"].capitalize}" %>
+            <img src="<%= pokemon[:sprite] %>" alt="" align="center" >
+            <input type="hidden" value="<%=pokemon.id%>" name="pokemon">
+            <input type="submit" value="Capture Pokemon">
+          </form>
+        <%end%>
+    <%end%>
+  </ul>
+  
+</h3>
+<form action="/logout" method="POST">
+  <input type="submit" value="logout">
+</form> <br>
+<form action="/delete/<%= @trainer.id %>" method="POST">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete user">
+</form>

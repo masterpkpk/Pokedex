@@ -5,10 +5,10 @@ class PokemonController < ApplicationController
    erb :welcome 
   end
 
-  get "/index" do
+  get "/pokemons" do
     @trainer = current_user
     if logged_in?
-      erb :'pokemon/index'
+      erb :'pokemon/pokemons'
     else
       redirect "/"
     end
@@ -17,11 +17,17 @@ class PokemonController < ApplicationController
   get '/pokemon' do
     @trainer = current_user
     if logged_in?
-      erb :'pokemon/show'
+      erb :'pokemon/index'
     else
       redirect "/"
     end
     
+  end
+
+  get '/pokemons/:id' do
+    @pokemon = Pokemon.find_by_id(params[:id])
+    erb :'pokemon/show'
+
   end
 
   post '/pokemon/new' do
@@ -29,7 +35,7 @@ class PokemonController < ApplicationController
     @trainer = current_user
     @pokemon_trainer = PokemonTrainer.create(pokemon_id: @pokemon.id, trainer_id: @trainer.id, nickname: @pokemon.name)
     @pokemon.trainer_id = @pokemon_trainer.trainer_id
-    redirect '/index'
+    redirect '/pokemons'
   end
 
   

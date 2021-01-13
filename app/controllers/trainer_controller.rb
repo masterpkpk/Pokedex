@@ -9,7 +9,7 @@ class TrainerController < ApplicationController
   post "/signup" do 
     @trainer = Trainer.create(username: params[:username], password: params[:password])
     session[:user_id] = @trainer.id
-    redirect "/index"
+    redirect "/trainer"
   end
 
   get '/login' do
@@ -20,7 +20,7 @@ class TrainerController < ApplicationController
     user = Trainer.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/index"
+      redirect "/pokemons"
     else
       redirect "/"
     end
@@ -36,18 +36,53 @@ class TrainerController < ApplicationController
     redirect "/"
   end
 
-  get "/home" do
+  get "/trainer" do
     @trainer = current_user
-    if logged_in?
-      erb :'trainer/home'
+    if logged_in? && @trainer.name == nil
+      erb :'trainer/index'
     else
-      redirect "/"
+      redirect "/trainer/edit"
     end
+  end
+
+  post '/trainer' do
+    @trainer = current_user
+    @trainer.name = params[:name]
+    @trainer.age = params[:age]
+    @trainer.hometown = params[:hometown]
+    @trainer.save
+    redirect '/pokemons'
+    
+  end
+  get '/trainer/edit' do
+    @trainer = current_user
+    if logged_in? && @trainer.name != nil
+      erb :'trainer/edit'
+    else
+      redirect '/pokemons'
+    end
+  
+  end
+  
+  patch '/trainer/edit' do
+    @trainer = current_user
+    @trainer.name = params[:name]
+    @trainer.age = params[:age]
+    @trainer.hometown = params[:hometown]
+    @trainer.save
+    redirect '/pokemons'
   end
 
   post "/delete/:user_id" do
     Trainer.destroy(params[:user_id])
     redirect '/'
   end
+
+
   
 end
+
+#index to pokemons
+#show route for individual pokeon
+#edit form for trainer to change username or something
+#validate presense of nickname 
