@@ -73,7 +73,7 @@ class TrainerController < ApplicationController
     redirect '/pokemons'
   end
 
-  post "/delete/:user_id" do
+  delete "/delete/:user_id" do
     Trainer.destroy(params[:user_id])
     redirect '/'
   end

@@ -11,10 +11,16 @@
 
 👤 **William martin**
 
+## To run this application
 
-## Show your support
+In terminal enter --
+bundle install
 
-Give a ⭐️ if this project helped you!
+once that is finished, in terminal enter
+shotgun
 
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+Navigate to localhost:9393 in web browser
+
+
+
+
