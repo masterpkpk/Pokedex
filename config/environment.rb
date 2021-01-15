@@ -10,6 +10,7 @@ ActiveRecord::Base.establish_connection(
 configure :development do
   set :database, 'sqlite3:db/development.sqlite'
 end
+require "awesome_print"
 
 require 'net/http'
 require 'open-uri'

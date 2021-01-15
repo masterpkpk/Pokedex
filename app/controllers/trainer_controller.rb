@@ -9,7 +9,7 @@ class TrainerController < ApplicationController
   post "/signup" do 
     @trainer = Trainer.create(username: params[:username], password: params[:password])
     session[:user_id] = @trainer.id
-    redirect "/trainer"
+    redirect "/trainers/:id"
   end
 
   get '/login' do
@@ -17,9 +17,9 @@ class TrainerController < ApplicationController
   end
 
   post "/login" do
-    user = Trainer.find_by(:username => params[:username])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
+    @trainer = Trainer.find_by(:username => params[:username])
+    if @trainer && @trainer.authenticate(params[:password])
+      session[:user_id] = @trainer.id
       redirect "/pokemons"
     else
       redirect "/"
@@ -31,21 +31,18 @@ class TrainerController < ApplicationController
   end
 
 
-  post "/logout" do
-    session.clear
-    redirect "/"
-  end
+  
 
-  get "/trainer" do
+  get "/trainers/:id" do
     @trainer = current_user
     if logged_in? && @trainer.name == nil
       erb :'trainer/index'
     else
-      redirect "/trainer/edit"
-    end
+      redirect "/trainers/:id/edit"
+    end 
   end
 
-  post '/trainer' do
+  post '/trainers' do
     @trainer = current_user
     @trainer.name = params[:name]
     @trainer.age = params[:age]
@@ -54,7 +51,7 @@ class TrainerController < ApplicationController
     redirect '/pokemons'
     
   end
-  get '/trainer/edit' do
+  get '/trainers/:id/edit' do
     @trainer = current_user
     if logged_in? && @trainer.name != nil
       erb :'trainer/edit'
@@ -64,7 +61,7 @@ class TrainerController < ApplicationController
   
   end
   
-  patch '/trainer/edit' do
+  patch '/trainers/:id/edit' do
     @trainer = current_user
     @trainer.name = params[:name]
     @trainer.age = params[:age]
