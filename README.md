@@ -19,6 +19,8 @@ bundle install
 once that is finished, in terminal enter
 shotgun
 
+run rake db:seed to populate database with pokemon
+
 Navigate to localhost:9393 in web browser
 
 
